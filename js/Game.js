@@ -55,8 +55,17 @@ class Game{
             players[index -1].x = x;
             players[index - 1].y = y;
 
-            // Differentiate the main player by printing
-            // the name of the player on the basket. 
+            if(index === player.index){
+                fill("black");
+                textSize(25);
+                text(allPlayers[plr].name, x-20, y+25);
+            }
+
+            fill("red");
+            textSize(40);
+            text("Player 1 : " + allPlayers.player1.score, 50, 50)
+
+            text("Player 2 : " + allPlayers.player2.score, 50, 100)
 
         }
 
@@ -69,8 +78,40 @@ class Game{
             player.distance = player.distance-10
             player.update();
         }
+        if(frameCount % 30 === 0){
+        fruits = createSprite(Math.round(random(0, 1000)), 0);
+        fruits.velocityY = 10;
+        g = Math.round(random(1, 5));
+        switch(g){
+            case 1 : fruits.addImage(fruit1_img);
+            break;
+            case 2 : fruits.addImage(fruit2_img);
+            break;
+            case 3 : fruits.addImage(fruit3_img);
+            break;
+            case 4 : fruits.addImage(fruit4_img);
+            break;
+            case 5 : fruits.addImage(fruit5_img);
+            break;
+            default : break;
+        }
+        fruitGroup.add(fruits);
+    }
+        
+    for(var i = 0; i<fruitGroup.length; i++){
+        if(fruitGroup.get(i).isTouching(players) ){
+            player.score = player.score+1
+            player.update();
+            fruitGroup.get(i).destroy();
+        }
+    }
 
-        // Create and spawn fruits randomly
+
+
+    
+    
+
+
 
         
     }
