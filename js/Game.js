@@ -63,9 +63,8 @@ class Game{
 
             fill("red");
             textSize(40);
-            text("Player 1 : " + allPlayers.player1.score, 50, 50)
-
-            text("Player 2 : " + allPlayers.player2.score, 50, 100)
+            text("Player 1 : " + allPlayers.player1.score, 50, 50);
+            text("Player 2 : " + allPlayers.player2.score, 50, 100);
 
         }
 
@@ -106,7 +105,12 @@ class Game{
         }
     }
 
-
+    if(player.score === 10){
+        text("GAME OVER", 400, 300);
+        player1.destroy();
+        player2.destroy();
+        fruitGroup.destroyEach();
+    }
 
     
     
